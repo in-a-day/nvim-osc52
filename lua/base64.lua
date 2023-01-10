@@ -36,7 +36,9 @@ function dec(data)
 end
 
 -- command line if not called as library
-if (arg ~= nil) then
+if arg == nil or vim.tbl_isempty(arg) then
+  module('base64',package.seeall)
+else
   local func = 'enc'
   for n,v in ipairs(arg) do
     if (n > 0) then
@@ -46,6 +48,4 @@ if (arg ~= nil) then
       else print(_G[func](v)) end
     end
   end
-else
-  module('base64',package.seeall)
 end
